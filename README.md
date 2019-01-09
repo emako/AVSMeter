@@ -1,1 +1,2 @@
-# AVSMeter
+# AVSMeter  
+AVSMeter is a CLI (command line interface) tool that "runs" an Avisynth script with virtually no overhead, displays clip info, CPU/GPU and memory usage and the minimum, maximum and average frames processed per second. Measuring how fast Avisynth can serve frames to a client application (x264, VirtualDub) and establishing CPU/GPU/memory usage helps with optimizing scripts and tracking down crashes, slowdowns and bottlenecks. 
