@@ -1,0 +1,476 @@
+v2.8.7
+- Error handling improvements
+- Cosmetics
+- Changed some error messages
+
+v2.8.6
+- Minor fixes/cosmetics
+- Documentation updates/corrections
+
+v2.8.5
+- Fixed a long standing exception handling bug
+
+v2.8.4
+- Regression from v2.8.3: Revert to "MapAndLoad" WinAPI function
+- Added switch "-v". In combination with "avsinfo", this switch adds a list of internal/external functions and DLL dependencies to the log file.
+
+v2.8.3
+- Changed to implicit loading of avisynth.dll which seems more stable in multithreaded environments
+- Fixed timing issue when deleting IScriptEnvironment objects
+
+v2.8.2
+- Improved command line switch logic/verification
+- Changed ini file default for "LogUseFileSaveDialog" to "0"
+- CPU usage now displayed as rational number
+- Memory usage now only displays the "Working Set" which represents the
+  amount of memory physically mapped to the process context.
+- Various fixes and tweaks
+- Cosmetics
+
+v2.8.1
+- Various small fixes
+
+v2.8.0
+- Fixed a display bug
+- Further reduced memory overhead
+
+v2.7.9
+- Reorganised command line usage (See documentation for details)
+- Added switch "-o" which disables the script pre-scan (See documentation for details)
+- Cosmetics
+
+v2.7.8
+- Regression from 2.7.7: Suppress duplicates in plugin enumeration
+
+v2.7.7
+- Added switch to specify a avisynth.dll other than the one automatically loaded
+- Updated AVS+ headers
+- Regression from 2.7.6: Some warnings/notes were not displayed
+- Refactoring
+
+v2.7.6
+- Fixed a bug in the 64 bit C-plugin enumeration
+- Memory tweaks
+
+v2.7.5
+- Fixed a couple of bugs
+- Re-organised the ini settings in logical groups
+
+v2.7.4
+- Added ini option "LogUseFileSaveDialog" (See documentation for details)
+- Brought back ini options "LogDirectory" and "LogFileDateTimeSuffix" (See documentation for details)
+
+v2.7.3
+- Fixed a bug in the plugin enumeration
+
+v2.7.2
+- Added new switch "-c". This allows specifying a custom plugin directory in combination with "-avsinfo".
+- "Save as..." dialog for all log/csv files when using "-log" and/or "-csv" switches
+- Updated AVS+ headers
+- Cosmetics
+
+v2.7.1
+- When using the switch "-avsinfo" in combination with "-log", a "Save as..." dialog will open enabling the user to save the log file
+- Minor fixes and refactoring
+- Cosmetics
+
+v2.7.0
+- Warnings and errors are reported in separate sections
+- Updated list of exception messages
+- Cosmetics
+
+v2.6.9
+- avsinfo: If the version info is missing in (auto-load) plugins/files, the UTC timestamp is printed instead
+- Simplified "ESC" key handling
+
+v2.6.8
+- Fixed a bug in plugin type enumeration (regression)
+
+v2.6.7
+- Minor fixes, refactoring and cosmetics
+ 
+v2.6.6
+- Detailed external function enumeration and duplicate report are still not working properly, removed for now
+
+v2.6.5
+- Added hint for error 127 (proc not found / procedure could not be found).
+- Minor fixes/cosmetics
+
+v2.6.4
+- New/updated code for reporting duplicate plugin functions
+
+v2.6.3
+- Fixed: Updating very old ini files didn't work
+- Removed report of duplicate plugin functions temporarily
+- Some minor fixes/cosmetics
+
+v2.6.2
+- Fixed a problem caused by the 50 plugin limit in "classic" Avisynth
+
+v2.6.1
+- The list of plugin functions in the log file (-avsinfo -log) now points out duplicates (functions with the same name in different DLLs) by adding "[DUPLICATE]" to the function name
+
+v2.6.0
+- External plugin functions are now listed for each plugin DLL 
+
+v2.5.9
+- Fixed potential duplicate entries in plugin list
+- It seems that old C 2.0 plugins are still being used by some so the plugin sections for v2.0 plugins are back
+- Minor fixes
+
+v2.5.8
+- Re-organised the auto-load sections and added section for AVSI
+- Fixed a problem with log file content (regression)
+- C 2.0 and CPP 2.0 plugins no longer have a dedicated section in the list of plugins.
+  They are still enumerated but now fall into the section "Uncategorized".
+  The reasons for this are
+  - They are not supported by AVS+ at all
+  - They need ancient support DLLs and special loading mechanisms in order to be
+    used with other Avisynth versions
+
+v2.5.7
+- Added sections for uncategorised files/DLLs in the plugin directories
+- Fixed a bug in the detection of installed VC++ runtimes
+- Improved error handling for plugin check
+
+v2.5.6
+- Fixed a problem with plugin enumeration
+- Refactoring and tweaks
+
+v2.5.5
+- Improved dependency check for FFTW support libraries
+- Updated CPU feature detection
+- Improved error handling for GPU-Z interface
+- Moved documentation for INI settings to AVSMeter.html
+- Cosmetics
+
+v2.5.4
+- Improved error handling for Avisynth core (avisynth.dll)
+- Tweaks to reduce overhead
+- Fixed a display bug
+- Refactoring
+
+v2.5.3
+- Fixed duplicate error message
+- Fixed a minor console output bug
+- Fixed a couple of cosmetic issues
+- Added "_x64"/"_x86" suffix to the avsinfo log name
+
+v2.5.2
+- Improved exception handling for Avisynth core (avisynth.dll)
+- Updated Avisynth headers
+- Refactoring and cleanup
+
+v2.5.1
+- New CPU feature detection, removed libcpuid dependency
+- WoW64 process detection may have given wrong results in some rare cases, this should be fixed
+- Updated Avisynth headers
+- Various functional and cosmetic fixes
+
+v2.5.0
+- Added warning when no plugin directory references are found in the registry and "classic" plugin auto-loading is therefore disabled
+- Updated libcpuid
+- Moved log entries created by "-avsinfo" for DLL dependencies and internal/external functions to the main log file (avsinfo.log)
+- Minor fixes and refactoring
+
+v2.4.9
+- Improved the error checking for the GPU-Z memory interface which fixes a rare issue with GPU-Z communication
+- Updated Avisynth headers
+- Removed some unnecessary command line validations
+
+v2.4.8
+- Fixed a regression from 2.4.7 - some helpful hints in the error report were suppressed
+
+v2.4.7
+- Added audio info to the console output
+- Tweaked timer test
+- Refactoring
+- Cosmetics
+
+v2.4.6
+- Fixed a bug that would display the wrong number of audio bits/sample in some cases
+- Fixed a bug that stopped enumeration of plugins when the Avisynth auto-loader threw a "too many plugins..." message
+- Generation of the log files "avsdeps.log" and "avsfunctions.log" is now optional and can be enabled in the ini file ("CreateDependencyLog", "CreateFunctionLog")
+
+v2.4.5
+- Added supported instruction sets to the CPU info
+- Reduced overhead of GPU sensor readout
+- Fixed a bug that would throw the Avisynth error "too many plugins loaded..." multiple times
+
+v2.4.4
+- Improved validation of INI settings
+- Updated libcpuid
+- Updated Avisynth headers
+- Updated NV GPU table
+- Refactoring
+
+v2.4.3
+- Added INI setting "UseUTC". If set to "1" (default), file timestamps are
+  displayed as UTC (Coordinated Universal Time)
+- Refactoring of the dependency test code
+- Added some command line sanity checks
+- Moved the documentation for INI settings to the INI file itself
+
+v2.4.2
+- Fixed dependency check for 2005 & 2008 runtimes
+
+v2.4.1
+- Added "Simple mode" (switch "-s"). This mode just runs the script without
+  gathering any runtime/performance data.
+- Updated advisory messages for missing dependencies
+- Re-structured the documentation a bit
+
+v2.4.0
+- Export a third log file when using the "-avsinfo -log" switch containing
+  DLL dependencies for avisynth.dll and all auto-load plugins
+- Refactoring of dependency checking code
+- Error handling improvements
+
+
+v2.3.9
+- Split list of internal and external functions generated with "-avsinfo"
+  into a separate log file ("avsfunctions.log")
+- Refactor plugin enumeration
+- Update some error messages
+- Re-organise source file structure
+- Other minor fixes
+
+
+v2.3.8
+- Updated Avisynth headers
+- Updated libcpuid
+- Refactoring and cosmetics
+- Perfdata -> std::vector
+- Optimisation of some helper functions
+
+
+v2.3.7
+- Updated Avisynth header to the latest AVS+ version (r2151)
+- Updated color space detection accordingly
+- Implemented some standard arrays as std::vector mainly for efficiency
+- Refactoring and cosmetics
+
+
+v2.3.6
+- Added enumeration of all color spaces supported by the latest AVS+,
+  including 16/32 Bit formats
+- Added "VersionNumber()" (defined in internal.h) to the Avisynth info
+- Fixed a buffer overflow problem in the string formatting code
+- Refactoring and cosmetics
+
+
+v2.3.5
+- Minor restructuring of the log files
+- Added GPU hardware info to the avsinfo log if the "-gpu" switch is used
+- Updated libcpuid
+- For classic Avisynth 2.6.x, auto-load directory references exclusive to Avisynth+
+  (i.e. "PluginDir+" entries in the registry) are now excluded from the enumeration
+  of plugins/plugin directories
+- Minor fixes
+- Refactoring
+
+
+v2.3.4
+- Fixed a silly bug that prevented correct detection of GPU capabiltities
+
+
+v2.3.3
+- Added real (measured) CPU clock to the CPU info
+- Reduced overhead of the process info functions
+- Various bug and cosmetic fixes
+
+
+v2.3.2
+- Added CPU info to log files (using Veselin Georgiev's libcpuid)
+- Removed some redundant info from the console output/log
+- Added VP engine info for NVIDIA cards
+- Cosmetics
+
+
+v2.3.1
+- Added switch "-n" which disables the initial speed test.
+- Updated Avisynth header to the latest AVS+ version
+- Added enumeration of internal functions to the "avsinfo" log
+- Some tweaks and minor fixes
+
+
+v2.3.0
+- Moved enumeration and testing of auto-load plugins back to main.
+- Changed file access modes in CreateFile() calls
+- Various fixes
+
+
+v2.2.9
+- Added hints to plugin error messages relating to missing support DLLs (fftw3.dll, etc.)
+- Added graphics card / GPU model info to the console output and log file
+- Added GPU clock / GPU memory clock info to the console output and log file
+
+
+v2.2.8
+- Improved Exception handling. Module names in which exceptions occur and address are reported
+
+
+v2.2.7
+- Fixed a couple of bugs
+- Improved memory usage
+- Added some hints to the plugin error messages (for example, pointing out potentially missing
+  restributable packages)
+
+
+v2.2.6
+- Added OS version info
+- Added plugin function enumeration to the "avsinfo" log
+- Couple of bugs fixed
+- Minor tweaks
+
+
+v2.2.5
+- Added dependency checking for avisynth.dll
+- More detailed and comprehensive plugin error messages relating to potentially missing dependencies
+
+
+v2.2.4
+- Added DLL dependency checking
+- Various fixes
+
+
+v2.2.3
+- New ini setting "SkipSpeedTest", see documentation.
+  I put back the script test at the start because it is the best method to determine a suitable
+  interval for measuring CPU/GPU/memory usage and minimizing the overhead for these measurements.
+
+
+v2.2.2
+- Added ini option "LogFileDateTimeSuffix" which makes adding the date/time suffix for .log/.csv files
+  optional.
+- More detailed error messages when using "-avsinfo" and plugin loading failures
+
+
+v2.2.1
+- New ini option "LogDirectory". If specified, all .log and .csv files will be created in that directory.
+- All .log and .csv files now have a suffix containing date and time of creation.
+- Various fixes
+
+
+v2.2.0
+- Settings in an existing INI file will no longer be overwritten with default settings
+  by a new version of AVSMeter.
+- ["-avsinfo" switch] Invoke "LoadPlugin" test for each DLL in the auto-load directory/directories
+- ["-avsinfo" switch] Combined with "-l" or "-log", writes the info to a file ("avsinfo.log" in the current directory)
+- Cosmetics
+
+
+v2.1.9
+- Bug fix for audio-only scripts not being detected properly (this bug was introduced in 2.1.7)
+- ["-avsinfo" switch] There is now a section for each plugin type (C / CPP)
+
+
+v2.1.8
+- ["-avsinfo" switch] Additional error handling to the plugin enumeration:
+  - Test DLLs if they are valid Avisynth plugins
+  - 64/32 bit mismatch detection
+- Separate sections for CPP- and C-plugins
+
+
+v2.1.7
+- Removed the initial speed test.
+- ["-avsinfo" switch] Now also lists all plugin DLLs (with version info if present)
+  found in the directory/directories which are referenced in the registry
+
+
+v2.1.6
+- "Efficiency index" ini setting disabled by default
+- Minor tweaks
+- Documentation update
+
+
+v2.1.5
+- Added "Efficiency index" display (FPS / CPU usage)
+
+
+v2.1.4
+- Fixed a problem with the time stamp determination
+- Fixed a minor timing issue
+- Some cosmetic improvements
+
+
+v2.1.3
+- Added some more info to the log and info screen
+- Minor exception handling improvements
+- Refactoring
+- Cosmetics
+
+
+v2.1.2
+- Added switch "-csv" so this option can be set on the command line as well
+- Added switch "-avsinfo"
+- Added average time/frame to the csv file output
+
+v2.1.1
+- Added ini setting "AVSDLL". The user can specify the avisynth.dll to be used.
+- Added handler for C structured exceptions
+
+v2.1.0
+- Fixes for potential timing issues when releasing the script environment
+- Additional error handling
+- Cosmetics
+
+v2.0.9
+- Added ini setting "CreateCSV". This setting creates a .csv file (along with the .log file)
+  containing the performance data formatted as comma-separated values for direct import
+  in Excel or a similar spread sheet program (OpenOffice, LibreOffice).
+- Added a slight delay between reading the last frame and calling "DeleteScriptEnvironment()"
+  to avoid sync issues with some plugins.
+
+v2.0.8
+- Added "DisplayFPS" and "DisplayTPF" ini file settings. The user can now choose between having
+  FPS or/and TPF (Time/Frame in milliseconds) printed to the console.
+- Added AVISYNTH_INTERFACE_VERSION to the log file
+- Added INI setting "AutoCompleteExtension" which makes the feature added in v2.0.7 optional
+- Minor fixes
+
+v2.0.7
+- Fixed broken plugin autoload directory enumeration.
+- If .avs file extension is missing, it will be added silently.
+
+v2.0.6
+- Added ini option "ConUseSTDOUT".
+
+v2.0.5
+- Added plugin directory info for AVS+ 32 and 64 Bit to the log file.
+- Added avisynth.dll linker/compiler version to the log file
+- Minor fixes
+
+v2.0.4
+- Added GPU/VPU data to the performance data section in the log file
+- Changed app icon
+- Added INI setting for "TimeLimit"
+- Put back INI settings for "MonitorGPULoad" and "ProcessPriority"
+- Code cleanup, refactoring
+
+v2.0.3
+- Added switch "timelimit" which terminates the program after a specified time
+- Removed (temporarily) "timeout" option due to thread sync issues with some filters
+- Removed some INI settings that are already covered by command line switches
+
+v2.0.2
+- Added more info to the log file (script name, command line switches, plugin directory)
+- Everything pertaining to information about the loaded Avisynth DLL including utility
+  functions is now wrapped into one class.
+- Various fixes
+
+v2.0.1
+- Command line processing improvements
+- Detection of outdated INI file didn't work properly. Fixed.
+- Updated GPU memory monitoring to support cards with dedicated/dynamic memory
+
+v2.0.0
+- Dropped support for Avisynth 2.5x. At least AVS 2.6 Alpha4 or AVS+ r1576 are required
+- Added location of the loaded avisynth.dll to the log file
+- Added detection of outdated INI file
+- Refactoring
+
+v1.9.8
+- Added monitoring of the NVIDIA Video Engine load (PureVideo SIP)
+- Added switch and INI setting for specifying the process priority
+- Refactoring, cosmetics and some minor fixes

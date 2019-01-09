@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="en-us" http-equiv="Content-Language">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>AVSMeter</title>
+    <style type="text/css">
+			body { font-family: verdana, arial, helvetica, sans-serif; color: #000000; font-size: 12px; background-color: #C8D4D8; text-align: Left; line-height: 150%; padding: 0px; margin: 6px }
+			h1 { font-family: verdana, arial, helvetica, sans-serif; font-size: 26px; line-height: 150%; color: #000000; padding: 0px 0px 0px 8px; margin-left: 0px; margin-right: 0px; margin-top: 12px; margin-bottom: 12px }
+			h2 { font-family: verdana, arial, helvetica, sans-serif; font-size: 22px; line-height: 150%; color: #000000; background-color: #90A0C0; padding:  0px 0px 0px 8px; margin-left: 0px; margin-right: 0px; margin-top: 12px; margin-bottom: 12px; border: #8080D0; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px }
+			h3 { font-family: verdana, arial, helvetica, sans-serif; font-size: 18px; line-height: 150%; color: #000000; padding: 0px 0px 0px 8px; margin-left: 0px; margin-right: 0px; margin-top: 12px; margin-bottom: 12px; border: #8080D0; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px }
+			h4 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: bold; text-decoration: underline }
+			a { color: #005090; text-decoration: none; font-family: verdana, arial, helvetica, sans-serif }
+			a:link  { color: #005090}
+			a:visited { color: #005090}
+			a:hover { background-color: #FF6060; color: #005090 }
+			table { font-size: 12px; margin-left: 0px; margin-top: 12px; margin-bottom: 12px; line-height: 150% }
+			pre { font-size: 12px; font-family: Courier, monospace; margin-top: 10px; margin-bottom: 10px; background-color: #D0D0C0; padding-left: 12px; padding-top: 12px; padding-right: 12px; padding-bottom: 12px; border: #908030; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px }
+			code { font-family: Courier, monospace; font-size: 12px; letter-spacing: 1px; color: #660033 }
+			var { font-family: Verdana, Arial, Helvetica, sans-serif; font-weight: normal; font-size: 12px; font-style: italic; letter-spacing: 1px; color: #660033 }
+			tt { font-family: Courier, monospace; font-size: 12px }
+			em { font-family: Courier, monospace; font-weight: normal; color: #FFFFFF; font-style: normal }
+			strong { font-family: Courier, monospace; font-weight: bold; color: #FFFF66; font-style: normal }
+			cite { border: 1px #3030A0 dotted; padding-left: 2px; padding-right: 2px; padding-top: 1px; padding-bottom: 1px }
+			kbd { color: #808000; font-family: Verdana, Arial, Helvetica, sans-serif; font-weight: normal; font-size: 10px; font-style: normal }
+		</style>
+  </head>
+  <body>
+    <big><big><big><br>
+          AVSMeter<br>
+          <br>
+        </big></big></big>
+    <hr width="100%" size="2">AVSMeter is a CLI (command line interface)
+    tool which measures the speed/efficiency of Avisynth scripts and
+    checks if Avisynth and its plugin sub-system are set up and working
+    correctly.<br>
+    <br>
+    <b> Features:</b><br>
+    <ul>
+      <li>"Running" scripts with virtually no overhead, displaying clip
+        info, CPU/GPU usage / memory usage and the minimum, maximum and
+        average frames processed per second. Measuring how fast Avisynth
+        can serve frames to a client application (x264, VirtualDub) and
+        establishing CPU/GPU/memory usage helps with optimizing scripts
+        and tracking down crashes, slowdowns and bottlenecks.</li>
+      <li>Performing a thorough test of the Avisynth installation and
+        associated plugins, checking if external dependencies are
+        installed, etc.<br>
+      </li>
+    </ul>
+    <br>
+    <b> <img alt="" src="avsmeter.png" width="780" height="607"><br>
+      <br>
+      <br>
+      <img src="avsinfo.png" alt="" width="780" height="735"><br>
+      <br>
+    </b><font face="Fixedsys"><big><br>
+        <br>
+      </big></font><font face="Verdana" color="#3333ff"><font size="+1">Command
+
+
+
+
+
+
+
+
+        line usage 1 (analyse a script):&nbsp; AVSMeter script.avs
+        [switches]</font></font><font face="Fixedsys"><big><b><font
+            face="Lucida Console" size="+1" color="#333399"><br>
+          </font></b><br>
+        Switches:<br>
+        &nbsp; -avsdll &nbsp; &nbsp; &nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Specify avisynth.dll to be used<br>
+        &nbsp; -info&nbsp;&nbsp;
+        [-i]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Display clip info<br>
+        &nbsp; -log&nbsp;&nbsp;&nbsp;
+        [-l]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Create log file<br>
+        &nbsp;
+        -csv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+        Create csv file<br>
+        &nbsp;
+        -gpu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+        Display GPU/VPU usage (requires GPU-Z)<br>
+        &nbsp; -range=first,last&nbsp;&nbsp; Set frame range<br>
+        &nbsp; -timelimit=n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Set time limit (seconds)<br>
+        &nbsp;
+        -priority=n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set
+        process priority (1:low, 2:normal, 3:high)<br>
+      </big></font> <font face="Fixedsys"><big><font face="Fixedsys"><big>&nbsp;
+
+
+
+
+            -o &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Omit script
+            pre-scanning</big></font><br>
+        <br>
+        <br>
+      </big></font><font face="Fixedsys" size="+1" color="#3333ff"><font
+        face="Verdana">Command line usage 2 (display extended Avisynth
+        info):&nbsp; AVSMeter avsinfo [switches]</font></font><font
+      face="Fixedsys"><big><font face="Verdana" size="+1"
+          color="#3333ff"><br>
+        </font><br>
+        Switches:<br>
+        &nbsp; -avsdll &nbsp; &nbsp; &nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Specify avisynth.dll to be used<br>
+        &nbsp;
+        -c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+        Specify custom plugin directory<br>
+        &nbsp; -log&nbsp;&nbsp;&nbsp;
+        [-l]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Create log file</big></font><br>
+    <font face="Fixedsys"><big><font face="Fixedsys"><big>&nbsp;
+            -lf&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Add internal/external
+            functions to the log file<br>
+          </big></font></big><big>&nbsp;</big></font><font
+      face="Fixedsys"><br>
+      <br>
+    </font><b>"avsinfo"<br>
+    </b>Displays extended info about the installed Avisynth version and
+    the plugin sub-system. If a custom avisynth.dll is specified in the
+    ini file, info about that file will be displayed. The "avsinfo"
+    command can be combined with "-log" in order to save the info to a
+    log file. The log file contains additional info about OS/hardware, a
+    list of DLL dependencies for avisynth.dll and all auto-load plugins
+    and optionally ("-lf") a list of internal/external Avisynth
+    functions.<br>
+    <br>
+    <b><b>"-c"</b><br>
+    </b>In combination with "avsinfo", this switch allows to select a
+    custom plugin directory (other than the directory/directories
+    referenced in the registry).<br>
+    <br>
+    <b><b><b><b>"-lf"</b><br>
+        </b></b></b>In combination with "avsinfo" and "-log", this
+    switch adds a list of internal/external functions to the log file.<b><b><br>
+        <br>
+        "-avsdll"</b><br>
+    </b>The user can specify the avisynth.dll to be used (a file open
+    dialog lets the user select it). Without this switch AVSMeter will
+    attempt to load avisynth.dll through the standard Windows search
+    hierarchy which is the default behaviour.<br>
+    <b><br>
+      "-log"<br>
+    </b>Creates a log file with various details about the installed
+    Avisynth version, clip info, runtime results, a copy of the script
+    and a performance data table with the measured details about each
+    frame/frame interval.<b><br>
+    </b><b><i>Note:</i></b> The numbering of the frames in the
+    performance data section is not zero-based, i.e. the first frame is
+    1, not 0.<br>
+    <br>
+    <b>"-csv"<br>
+    </b>Creates a CSV file containing the performance data formatted as
+    comma-separated values for direct import in Excel or a similar
+    spread sheet program (OpenOffice, LibreOffice).<nobr></nobr><br>
+    <b><i>Note:</i></b> The numbering of the frames in the .csv file is
+    not zero-based, i.e. the first frame is 1, not 0.<br>
+    <br>
+    <b>"-gpu"<br>
+    </b>Enables display of the GPU/VPU usage which of course is only
+    useful if a filter that uses the GPU is in the chain. AVSMeter uses
+    <b><a href="http://www.techpowerup.com/downloads/SysInfo/GPU-Z/">GPU-Z</a></b>
+    to access the graphics card sensors through a shared memory space.
+    GPU-Z has to be running (the window can be minimized to the system
+    tray) before running AVSMeter.<br>
+    <br>
+    <b>"-range=first,last"<br>
+    </b>Specify the range of frames to be processed. For example,
+    "-range=1500,1999" processes 500 frames starting at frame 1500.
+    Without "-range" AVSMeter processes all frames of the script.<br>
+    <br>
+    <b>"-timelimit=n"<br>
+    </b>Specify a time limit (in seconds) after which the program stops
+    reading frames and terminates.<br>
+    <br>
+    <b><b>"-o"</b></b><br>
+    AVSMeter runs a quick test on a few frames at the start in order to
+    measure the frames/second that Avisynth returns for a given script.
+    The result is used to determine a suitable interval for measuring
+    CPU/GPU/memory usage and minimizing the overhead of these
+    measurements.<br>
+    When <b>"-o"</b> is used, that test will be omitted. This can be
+    useful if, for example, AVSMeter is used with a script that writes a
+    sequence of images where the speed test is irrelevant.<br>
+    <font color="#3333ff"> For normal operation, e.g. testing the speed
+      of a script, this switch should not be used, otherwise the
+      accuracy of the FPS/TPF measurements will be reduced, particularly
+      for fast scripts.</font><br>
+    <b><u><br>
+        <br>
+        <br>
+        <br>
+      </u></b><b><u><big>INI file settings</big></u></b><br>
+    AVSMeter checks if a settings file ("AVSMeter.ini") exists in the
+    directory from where it is started. If not, it will be created with
+    the default settings.<br>
+    <b><font size="-1" color="#3333ff"><b><i>Note:</i></b> If
+        applicable, command line switches override INI settings.</font></b><br>
+    <br>
+    Supported settings for the INI file (default values in <b><font
+        color="Red">red</font></b>):<br>
+    <br>
+    <b>"DisplayFPS" (0 or <font color="#ff0000">1</font>)</b><br>
+    If set to "1", frames/second is printed to the console.<br>
+    <br>
+    <b>"DisplayTPF" (<font color="#ff0000">0</font> or 1):</b><br>
+    If set to "1", time/frame (in milliseconds) is printed to the
+    console.<br>
+    <br>
+    <b>"PauseBeforeExit" (<font color="#ff0000">0</font> or 1):</b><br>
+    If set to "1", pauses the program at the end and returns to the
+    console prompt only after pressing "ESC".<br>
+    <br>
+    <b>"CreateLog" (<font color="#ff0000">0</font> or 1):</b><br>
+    Creates a log file with various details about the installed Avisynth
+    version, clip info, runtime results, a copy of the script and a
+    performance data table with the measured details about each
+    frame/frame interval.<b><br>
+    </b><b><i>Note:</i></b> The numbering of the frames in the
+    performance data section is not zero-based, i.e. the first frame is
+    1, not 0.<br>
+    <br>
+    <b>"CreateCSV" (<font color="#ff0000">0</font> or 1):</b><br>
+    Creates a CSV file containing the performance data formatted as
+    comma-separated values for direct import in Excel or a similar
+    spread sheet program (OpenOffice, LibreOffice).<nobr></nobr><br>
+    <b><i>Note:</i></b> The numbering of the frames in the .csv file is
+    not zero-based, i.e. the first frame is 1, not 0.<br>
+    <br>
+    <b><b>"LogDirectory"</b><br>
+    </b> The user can specify a directory in which all log files are
+    stored. This has to be a fully qualified<br>
+    path, for example "LogDirectory=c:\LogFiles" (without the quotes).
+    The <b><font color="#ff0000">default is an empty string</font></b><br>
+    which means that all log files are stored in the script directory
+    or, in case the "-avsinfo"<br>
+    switch was used, the current (working) directory.<br>
+    <b><i>Note:</i></b> This setting is ignored if
+    "LogUseFileSaveDialog" is set to "1".<br>
+    <br>
+    <b><b>"LogFileDateTimeSuffix" (<font color="#ff0000">0</font> or 1):</b><br>
+    </b>If set to "1", adds a date/time suffix to all .log and .csv
+    files.<b><br>
+    </b><b><i>Note:</i></b> This setting is ignored if
+    "LogUseFileSaveDialog" is set to "1".<b><br>
+      <br>
+      "LogUseFileSaveDialog" (</b><b><b><font color="#ff0000">0</font>
+        or 1):</b><br>
+    </b>If set to "1", AVSMeter prompts with a file save dialog so the
+    user can choose where to save .log/.csv files.<br>
+    <b><br>
+      "MonitorGPULoad" (<font color="#ff0000">0</font> or 1):</b><br>
+    If set to "1", enables display of the GPU/VPU usage which of course
+    is only useful if a filter that uses the GPU is in the chain.
+    AVSMeter uses GPU-Z to access the graphics card sensors through a
+    shared memory interface. GPU-Z must be running in order to use this
+    feature.<br>
+    <br>
+    <b>"TimeLimit" (1 - 999999):</b><br>
+    Specify a time limit (in seconds) after which the program stops
+    reading frames and terminates. Setting this to "<font
+      color="#ff0000"><b>-1</b></font>" disables the feature.<br>
+    <br>
+    <b>"AVSDLL"</b><br>
+    The user can specify the avisynth.dll to be used. This has to be a
+    fully qualified path, for example
+    "AVSDLL=d:\apps\avisynth\avisynth.dll" (without the quotes). The <font
+      color="#ff0000"><b>default is an empty string</b> </font>which
+    means that AVSMeter will attempt to load avisynth.dll through the
+    standard Windows search hierarchy.<br>
+    <br>
+    <b>"FrameRange" (first,last):</b><br>
+    Specify the range of frames to be processed. "FrameRange=<font
+      color="#ff0000"><b>0,-1</b></font>" processes all frames in the
+    script. For example, "FrameRange=1500,1999" processes 500 frames
+    starting at frame 1500.<br>
+    <br>
+    <b>"AllowOnlyOneInstance" (0 or <font color="#ff0000">1</font>):</b><br>
+    If set to "1", only one instance of AVSMeter can be started.<br>
+    <br>
+    <b>"ProcessPriority" (1, <font color="#ff0000">2</font> or 3):</b><br>
+    Specify the process priority for AVSMeter and all attached processes
+    (1: low, 2: normal, 3: high).<br>
+    <br>
+    <b>"InvokeDistributor" (0 or <font color="#ff0000">1</font>):</b><br>
+    For users of SEt's Avisynth MT: If set to "1", adds the
+    "Distributor" call internally if the script uses one of the MT Modes
+    1~4.<br>
+    <br>
+    <b>"ConUseSTDOUT" (<font color="#ff0000">0</font> or 1):</b><br>
+    If set to "1", directs all console output to stdout. The default
+    setting "0" uses stderr except the "command line usage" message
+    which always goes to stdout.<br>
+    <br>
+    <b>"UseColor" (0 or <font color="#ff0000">1</font>):</b><br>
+    If set to "0", coloring of the console output is disabled.<br>
+    <br>
+    <br>
+  </body>
+</html>
